@@ -5,21 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue To Do List</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/5f5f7e14ba.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app">
         <section class="container">
             <h1 class="title-section"> {{ title }}</h1>
             <div class="task-bar">
-                <input type="text">
+                <input type="text" v-model="">
                 <button>Aggiungi</button>
             </div>
 
             <div class="item">
-                <ul class="tasks">
-                    <li class="task">
+                <ul class="tasks" v-if="todos.length > 0">
+                    <li class="task" v-for="(todo, index) in todos" :key="index">
+                        <p :class="{ decoration: todo.done }">{{ todo.text }}</p>
+                        <i class="fa-solid fa-xmark" @click="removeTodo()"></i>
                     </li>
                 </ul>
+                <h2 v-else>non ci sono task</h2>
             </div>
         </section>
     </div>
