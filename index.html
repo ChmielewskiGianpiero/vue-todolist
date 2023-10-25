@@ -12,18 +12,18 @@
         <section class="container">
             <h1 class="title-section"> {{ title }}</h1>
             <div class="task-bar">
-                <input type="text" v-model="">
-                <button>Aggiungi</button>
+                <input @keyup.enter="addTodo()" type="text" v-model="newTodo" placeholder="aggiungi una task">
+                <button @click="addTodo()" >Aggiungi</button>
             </div>
 
-            <div class="item">
+            <div class="item" >
                 <ul class="tasks" v-if="todos.length > 0">
-                    <li class="task" v-for="(todo, index) in todos" :key="index">
-                        <p :class="{ decoration: todo.done }">{{ todo.text }}</p>
-                        <i class="fa-solid fa-xmark" @click="removeTodo()"></i>
+                    <li class="task"  v-for="(todo, index) in todos" :key="index">
+                        <p :class="addLine(index)">{{ todo.text }}</p>
+                        <i class="fa-solid fa-xmark" @click="removeTodo(index)"></i>
                     </li>
                 </ul>
-                <h2 v-else>non ci sono task</h2>
+                <h2 v-else>Al momento non ci sono task!</h2>
             </div>
         </section>
     </div>

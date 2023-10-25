@@ -4,7 +4,7 @@ createApp({
     data() {
         return {
             title : "Vue To Do List",
-            currentIndex: 0,
+            currentIndex : 0,
             todos: [
                 {
                     text: 'Fare i compiti',
@@ -12,20 +12,40 @@ createApp({
                 },
                 {
                     text: 'Fare la spesa',
-                    done: true
+                    done: false
                 },
                 {
                     text: 'Fare il bucato',
                     done: false
                 }
-            ]
-
+            ],
+            newTodo: ""
         }
     },
     methods: {
-        removeTodo () {
-            delete this.todos[currentIndex].text;
+        addLine (index) {
+            if (this.todos[index].done ==  true) {
+                return "task-completed"
+            } else {
+                return ""
+            }
+        },
+
+        addTodo (){
+            const newTodo = {
+                text: this.newTodo,
+                done: false
+            }
+            this.todos.unshift(newTodo)
+            
+            this.newTodo = "";
+        },
+
+        removeTodo(index){
+            this.todos.splice(index , 1)
         }
+
+        
     }
 }).mount('#app');
 

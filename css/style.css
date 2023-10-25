@@ -39,6 +39,10 @@ button{
     gap: 15px;
 }
 
-.decoration {
+.task-completed {
     text-decoration: line-through;
+}
+
+.d-none{
+    display: none;
 }
