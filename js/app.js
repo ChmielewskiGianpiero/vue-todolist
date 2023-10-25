@@ -24,7 +24,7 @@ createApp({
     },
     methods: {
         addLine (index) {
-            if (this.todos[index].done ==  true) {
+            if (this.todos[index].done ===  true) {
                 return "task-completed"
             } else {
                 return ""
