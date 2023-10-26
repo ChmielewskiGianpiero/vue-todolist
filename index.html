@@ -10,17 +10,26 @@
 <body>
     <div id="app">
         <section class="container">
-            <h1 class="title-section"> {{ title }}</h1>
+            <header class="task-header">
+                <h1 class="title-section"> {{ title }}</h1>
+                <img :src="logoPath" alt="">
+            </header>
             <div class="task-bar">
-                <input @keyup.enter="addTodo()" type="text" v-model="newTodo" placeholder="aggiungi una task">
-                <button @click="addTodo()" >Aggiungi</button>
+                <input class="add-bar" @keyup.enter="addTodo()" type="text" v-model="newTodo" placeholder="aggiungi una task">
+                <button class="add-btn" @click="addTodo()" >Aggiungi</button>
             </div>
 
             <div class="item" >
                 <ul class="tasks" v-if="todos.length > 0">
-                    <li class="task"  v-for="(todo, index) in todos" :key="index">
-                        <p :class="addLine(index)">{{ todo.text }}</p>
-                        <i class="fa-solid fa-xmark" @click="removeTodo(index)"></i>
+                    <li class="task" 
+                    v-for="(todo, index) in todos" :key="index">
+                        
+                        <p :class=" todo.done == true ? 'task-completed' : '' " >
+                        {{ todo.text }}</p>
+
+                        <i class="fa-solid fa-xmark remove-icon" 
+                        @click="removeTodo(index)"></i>
+
                     </li>
                 </ul>
                 <h2 v-else>Al momento non ci sono task!</h2>

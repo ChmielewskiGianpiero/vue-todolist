@@ -4,6 +4,7 @@ createApp({
     data() {
         return {
             title : "Vue To Do List",
+            logoPath: "./img/pngwing.com.png",
             currentIndex : 0,
             todos: [
                 {
@@ -12,7 +13,7 @@ createApp({
                 },
                 {
                     text: 'Fare la spesa',
-                    done: false
+                    done: true
                 },
                 {
                     text: 'Fare il bucato',
@@ -23,6 +24,7 @@ createApp({
         }
     },
     methods: {
+
         addLine (index) {
             if (this.todos[index].done ===  true) {
                 return "task-completed"
@@ -36,16 +38,14 @@ createApp({
                 text: this.newTodo,
                 done: false
             }
+
             this.todos.unshift(newTodo)
-            
             this.newTodo = "";
         },
 
         removeTodo(index){
             this.todos.splice(index , 1)
         }
-
-        
     }
 }).mount('#app');
 
